@@ -1,7 +1,9 @@
-cmake_minimum_required (VERSION 2.8.12)
+cmake_minimum_required (VERSION 3.4)
 project (cs225a)
 SET(CMAKE_CXX_FLAGS "-std=c++11 -I/usr/include -I/usr/local/include")
 SET(CMAKE_BUILD_TYPE "Release")
+set(CMAKE_CXX_STANDARD 17)
+
 
 # set common dependencies
 # - eigen3
@@ -59,11 +61,15 @@ find_library(GLFW_LIBRARY glfw)
 find_library(HIREDIS_LIBRARY hiredis)
 
 
+#- plots
+find_package(pybind11 REQUIRED)
+
 set(CS225A_COMMON_LIBRARIES
 	${CHAI3D_LIBARIES}
 	${SAI2-COMMON_LIBRARIES}
 	${HIREDIS_LIBRARY}
 	${GLFW_LIBRARY}
+	pybind11::embed
 	)
 
 set (CS225A_BINARY_DIR                  ${PROJECT_SOURCE_DIR}/bin)
